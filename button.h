@@ -2,12 +2,14 @@
 #define BUTTON_H
 
 #include <QWidget>
+#include <QPushButton>
 
-class button : public QWidget
+class button : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit button(QWidget *parent = nullptr);
+    button(QString pic);
+
 
 signals:
 
