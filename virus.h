@@ -2,16 +2,41 @@
 #define VIRUS_H
 
 #include <QObject>
-
+#include <QPoint>
+#include <QPixmap>
+#include "waypoint.h"
+#include "mainwindow.h"
+#include <QSize>
+#include "sceneone.h"
+//继承QObject？
+class Sceneone;
 class virus : public QObject
 {
     Q_OBJECT
 public:
-    explicit virus(QObject *parent = nullptr);
+    virus(WayPoint *startPoint,Sceneone *game,const QPixmap &fig);//construct function
+    void draw(QPainter *painter);//paint the virus
+    void move();//the virus go step by step
+    ~virus();
 
 signals:
 
 public slots:
+     void activate();//set it as active
+
+private:
+    double Hplife;//HP total
+    double Hpnow;//HP now
+    double speed;//speed
+    WayPoint * goalpoint;//next  waypoint
+    QPoint position;//position now
+    QPixmap figure;//figure of the virus
+    Sceneone *game;//???????what type???????sceneone or mainwindow or what?
+    double rotation;//the angle needs to turn at next way point
+    bool active = false;//whether this virus can move??what usage
+
+    static const QSize fixedsize;
 };
 
 #endif // VIRUS_H
+
